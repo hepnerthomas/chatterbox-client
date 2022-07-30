@@ -8,6 +8,7 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+
   },
 
   render: function() {
@@ -18,13 +19,11 @@ var MessagesView = {
 
     // // For each message in the messages array
     for (message of messages) {
+
       // render the message
-      // let $renderedMessage = MessagesView.renderMessage(message);
       MessagesView.renderMessage(message);
     }
 
-    // // Replace the chats in the HTML
-    $('#chats').replaceWith(MessagesView.$chats);
 
   },
 
@@ -34,7 +33,7 @@ var MessagesView = {
     // render the input message and convert to jQuery variable
     let $renderedMessage = $(MessageView.render(message));
 
-    // append the input message to chats html element
+    // append the input message to chats html element in DOM
     $renderedMessage.appendTo(MessagesView.$chats);
 
   },

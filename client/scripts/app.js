@@ -17,19 +17,20 @@ var App = {
 
     // Fetch initial batch of messages
     App.startSpinner();
-    App.fetch(App.stopSpinner);
+    App.fetch(App.stopSpinner());
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+    setInterval(function() {
+      App.fetch();
+    }, 1000);
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log(data);
-      // console.log(Array.isArray(data));
-      console.log(MessageView.render(data[0]));
-      // console.log(MessageView.render({username: "<script>$('body').prepend('you got pwned')</script>", text: "<script>$('body').prepend('you got pwned')</script>", roomname: "<script>$('body').prepend('you got pwned')</script>"}));
+      console.log(data[0]);
+      // console.log(MessageView.render(data[0]));
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
@@ -38,6 +39,7 @@ var App = {
       Messages._data = data;
 
       // Display all stored messages
+      MessagesView.$chats.empty();
       MessagesView.render();
     });
   },

@@ -34,6 +34,8 @@ var FormView = {
     // Send the message to the server
     Parse.create(messageToSubmit, function() {
       console.log('chatterbox: SUCCESS - message sent to server.');
+      // MessagesView.$chats.empty();
+      // MessagesView.render();
     });
 
     console.log('click!');
@@ -41,7 +43,7 @@ var FormView = {
 
   setStatus: function(active) {
     var status = active ? 'true' : null;
-    // FormView.$form.find('input[type=submit]').attr('disabled', status);
+    FormView.$form.find('input[type=submit]').attr('disabled', status);
   }
 
 };
