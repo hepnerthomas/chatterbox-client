@@ -20,22 +20,18 @@ var FormView = {
     // Get user's text data from the event
     var $formData = FormView.$form.serializeArray();
     var $formMessage = $formData[0]['value'];
-    // console.log($formData);
-    // console.log($formMessage);
-    // console.log(FormView.$form);
 
     // Construct the message to send to server
+    var currentRoomName = $('#rooms option:selected').text();
     var messageToSubmit = {
       username: App.username,
       text: $formMessage,
-      roomname: 'TBD'
+      roomname: currentRoomName
     };
 
     // Send the message to the server
     Parse.create(messageToSubmit, function() {
       console.log('chatterbox: SUCCESS - message sent to server.');
-      // MessagesView.$chats.empty();
-      // MessagesView.render();
     });
 
     console.log('click!');

@@ -21,7 +21,10 @@ var MessagesView = {
     for (message of messages) {
 
       // render the message
-      MessagesView.renderMessage(message);
+      if (arguments[0] === undefined || message.roomname === arguments[0]) {
+        MessagesView.renderMessage(message);
+      }
+
     }
 
 

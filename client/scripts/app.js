@@ -38,9 +38,11 @@ var App = {
       // Store fetched data in our messages object
       Messages._data = data;
 
-      // Display all stored messages
+      // Display all stored messages for the current room
+      var currentRoomName = $('#rooms option:selected').text();
       MessagesView.$chats.empty();
-      MessagesView.render();
+      MessagesView.render(currentRoomName);
+      RoomsView.render();
     });
   },
 
