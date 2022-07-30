@@ -27,9 +27,18 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+      // console.log(Array.isArray(data));
+      console.log(MessageView.render(data[0]));
+      // console.log(MessageView.render({username: "<script>$('body').prepend('you got pwned')</script>", text: "<script>$('body').prepend('you got pwned')</script>", roomname: "<script>$('body').prepend('you got pwned')</script>"}));
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
+
+      // Store fetched data in our messages object
+      Messages._data = data;
+
+      // Display all stored messages
+      MessagesView.render();
     });
   },
 

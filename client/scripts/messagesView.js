@@ -12,10 +12,31 @@ var MessagesView = {
 
   render: function() {
     // TODO: Render _all_ the messages.
+
+    // Get the messages
+    let messages = Messages._data;
+
+    // // For each message in the messages array
+    for (message of messages) {
+      // render the message
+      // let $renderedMessage = MessagesView.renderMessage(message);
+      MessagesView.renderMessage(message);
+    }
+
+    // // Replace the chats in the HTML
+    $('#chats').replaceWith(MessagesView.$chats);
+
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
+
+    // render the input message and convert to jQuery variable
+    let $renderedMessage = $(MessageView.render(message));
+
+    // append the input message to chats html element
+    $renderedMessage.appendTo(MessagesView.$chats);
+
   },
 
   handleClick: function(event) {
