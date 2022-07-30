@@ -16,13 +16,32 @@ var FormView = {
 
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
-  
+
+    // Get user's text data from the event
+    var $formData = FormView.$form.serializeArray();
+    var $formMessage = $formData[0]['value'];
+    // console.log($formData);
+    // console.log($formMessage);
+    // console.log(FormView.$form);
+
+    // Construct the message to send to server
+    var messageToSubmit = {
+      username: App.username,
+      text: $formMessage,
+      roomname: 'TBD'
+    };
+
+    // Send the message to the server
+    Parse.create(messageToSubmit, function() {
+      console.log('chatterbox: SUCCESS - message sent to server.');
+    });
+
     console.log('click!');
   },
 
   setStatus: function(active) {
     var status = active ? 'true' : null;
-    FormView.$form.find('input[type=submit]').attr('disabled', status);
+    // FormView.$form.find('input[type=submit]').attr('disabled', status);
   }
 
 };
