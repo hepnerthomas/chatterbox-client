@@ -23,7 +23,6 @@ var MessagesView = {
     for (message of messages) {
        // render the message
       if (arguments[0] === undefined || message.roomname === arguments[0]) {
-        console.log(arguments[0]);
         MessagesView.renderMessage(message);
       }
 
@@ -36,17 +35,19 @@ var MessagesView = {
     // TODO: Render a single message.
 
     // render the input message and convert to jQuery variable
-    let $renderedMessage = $(MessageView.render(message));
+    // let $renderedMessage = $(MessageView.render(message));
+    let $renderedMessage;
 
-    // console.log($renderedMessage);
     // if the username is in friends, highlight the username
-    // if (Friends._data.has(message.username)) {
-      // console.log($renderedMessage('.username'));
+    if (Friends._data.has(message.username)) {
       // consol
-      // console.log($renderedMessag.children[0]);
+      // console.log($renderedMessage[0].children[0]);
+      $renderedMessage = $(MessageView.renderFriendMessage(message));
       // $renderedMessage[0].children[0].replaceWith('<div class="username"><mark><%- username %></mark></div>');
-      // $renderedMessage('.username').html('<div class="username"><mark><%- username %></mark></div>');
-    // }
+      // $renderedMessage('.userna eleme').html('<div class="username"><mark><%- username %></mark></div>');
+    } else {
+      $renderedMessage = $(MessageView.render(message));
+    }
 
     // append the input message to chats html element in DOM
     $renderedMessage.appendTo(MessagesView.$chats);

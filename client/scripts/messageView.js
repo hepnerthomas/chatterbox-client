@@ -11,8 +11,15 @@ var MessageView = {
         <div class="text"><%- text %></div>
         <div class="roomname"><%- roomname %></div>
       </div>
-    `)
+    `),
 
+    renderFriendMessage: _.template(`
+    <div class="chat">
+      <div class="username"><mark><%- username %></mark></div>
+      <div class="text"><%- text %></div>
+      <div class="roomname"><%- roomname %></div>
+    </div>
+  `)
 
 };
 

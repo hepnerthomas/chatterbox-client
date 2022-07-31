@@ -46,7 +46,7 @@ var App = {
       var friends = Friends._data;
       console.log(friends);
       MessagesView.$chats.empty();
-      MessagesView.render(currentRoomName); //, friends
+      MessagesView.render(currentRoomName, friends); //, friends
       RoomsView.render();
     });
   },
