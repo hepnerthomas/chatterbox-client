@@ -10,7 +10,7 @@ var RoomsView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     RoomsView.$button.on('click', RoomsView.handleClick);
-    RoomsView.$select.on('click', RoomsView.handleChange);
+    RoomsView.$select.on('change', RoomsView.handleChange);
     // Pseudocode:
     // select:
       // call render function to show list of all rooms
@@ -33,7 +33,7 @@ var RoomsView = {
     for (message of messages) {
       // truncate roomname from message and store in variable
       let roomname = String(message.roomname);
-      roomname = roomname.substring(0, 12);
+      roomname = roomname.substring(0, 13);
       if (!roomnames.includes(roomname)) {
         roomnames.push(roomname);
         if (roomname === 'New room...') {
@@ -57,9 +57,9 @@ var RoomsView = {
     // Create rendered room
     var $renderedRoom;
     if (arguments[1] !== undefined) {
-      $renderedRoom = $(`<option ${arguments[1]}> ${roomname} </option>`)
+      $renderedRoom = $(`<option ${arguments[1]}>${roomname}</option>`)
     } else {
-      $renderedRoom = $(`<option> ${roomname} </option>`)
+      $renderedRoom = $(`<option>${roomname}</option>`)
     }
 
     // Append rendered room to the DOM
@@ -69,10 +69,9 @@ var RoomsView = {
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
-
-    // Pseuodcode:
-    // get new roomname from the event
-    // renderRoom(roomname): display list of messages for new roomname
+    var selectedRoomName = $('#rooms select').find('option:selected').text();
+    // console.log(selectedRoomName);
+    MessagesView.render(selectedRoomName);
   },
 
   handleClick: function(event) {
@@ -82,11 +81,22 @@ var RoomsView = {
     event.preventDefault();
 
     // get the user input for the new room name
-    var newRoomName = $('#new-room').serializeArray()[0]['value'];;
+    var newRoomName = $('#new-room').serializeArray()[0]['value'];
+    // console.log(newRoomName);
+    // var newRoomName = event.currentTarget.innerText;
+
+    // console.log(newRoomName);
+    // var newRoomName = event.currentTarget.innerText;
+    // console.log(event.currentTarget.parentNode);
+    // console.log(event.currentTarget.parentNode.children);
+    // console.log(event.currentTarget.parentNode.children[1].innerText);
+    // console.log(event);
+    // var newRoomName = event.currentTarget.parentNode.children[1].innerText;
+    // console.log(newRoomName);
 
     // add the new room to the roomnames
     Rooms.add(newRoomName);
-    console.log(Rooms._data);
+    // console.log(Rooms._data);
 
     // render the new room
     RoomsView.renderRoom(newRoomName, 'selected');

@@ -40,8 +40,13 @@ var App = {
 
       // Display all stored messages for the current room
       var currentRoomName = $('#rooms option:selected').text();
+      // console.log(currentRoomName);
+
+      // Highlight all friends names in messages
+      var friends = Friends._data;
+      // console.log(friends);
       MessagesView.$chats.empty();
-      MessagesView.render(currentRoomName);
+      MessagesView.render(currentRoomName); //, friends
       RoomsView.render();
     });
   },
