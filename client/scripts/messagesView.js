@@ -66,10 +66,7 @@ var MessagesView = {
     var friendName = event.currentTarget.innerText;
     // var friendName = event.serializeArray()[0]['value'];
 
-    // add friendName to friends list
-    if (!Friends._data.has(friendName)) {
-      Friends.toggleStatus(friendName);
-    }
+    Friends.toggleStatus(friendName);
 
 
   }

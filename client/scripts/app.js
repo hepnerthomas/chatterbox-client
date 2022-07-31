@@ -44,7 +44,7 @@ var App = {
 
       // Highlight all friends names in messages
       var friends = Friends._data;
-      // console.log(friends);
+      console.log(friends);
       MessagesView.$chats.empty();
       MessagesView.render(currentRoomName); //, friends
       RoomsView.render();
